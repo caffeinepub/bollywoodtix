@@ -12,8 +12,8 @@ interface Props {
 export default function MovieCard({ movie, compact }: Props) {
   return (
     <div
-      className="rounded-xl overflow-hidden flex flex-col group transition-transform hover:-translate-y-1"
-      style={{ background: "#2A2F35", border: "1px solid #3a3f45" }}
+      className="rounded-xl overflow-hidden flex flex-col group transition-transform hover:-translate-y-1 shadow-sm"
+      style={{ background: "#FFFFFF", border: "1px solid #E5E0D8" }}
     >
       <div
         className="relative overflow-hidden"
@@ -24,34 +24,32 @@ export default function MovieCard({ movie, compact }: Props) {
           alt={movie.title}
           className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         <Badge
           className="absolute top-2 left-2 text-xs"
           style={{
-            background: "#3B0A0A",
-            color: "#F4C65A",
-            border: "1px solid #D6A23A",
+            background: "#2A7B6F",
+            color: "#FFFFFF",
+            border: "none",
           }}
         >
           {movie.certificate}
         </Badge>
         <div className="absolute bottom-2 left-2 flex items-center gap-1">
-          <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
-          <span className="text-xs font-bold text-yellow-300">
-            {movie.rating}
-          </span>
+          <Star className="w-3.5 h-3.5 fill-teal-300 text-teal-300" />
+          <span className="text-xs font-bold text-white">{movie.rating}</span>
         </div>
       </div>
       <div className="p-3 flex flex-col flex-1">
         <h3
           className="font-bold text-sm leading-tight mb-1"
-          style={{ color: "#F2E6D3", fontFamily: "Playfair Display, serif" }}
+          style={{ color: "#1A2332", fontFamily: "Playfair Display, serif" }}
         >
           {movie.title}
         </h3>
         <div className="flex items-center gap-1 mb-2">
-          <Clock className="w-3 h-3" style={{ color: "#B8B0A6" }} />
-          <span className="text-xs" style={{ color: "#B8B0A6" }}>
+          <Clock className="w-3 h-3" style={{ color: "#6B7280" }} />
+          <span className="text-xs" style={{ color: "#6B7280" }}>
             {movie.duration}
           </span>
         </div>
@@ -61,7 +59,7 @@ export default function MovieCard({ movie, compact }: Props) {
               key={g}
               variant="outline"
               className="text-xs px-1.5 py-0"
-              style={{ borderColor: "#4a3020", color: "#D6A23A" }}
+              style={{ borderColor: "#B8D8D4", color: "#2A7B6F" }}
             >
               {g}
             </Badge>
@@ -72,7 +70,7 @@ export default function MovieCard({ movie, compact }: Props) {
             <Button
               size="sm"
               className="w-full font-semibold text-xs"
-              style={{ background: "#F4C65A", color: "#120808" }}
+              style={{ background: "#2A7B6F", color: "#FFFFFF" }}
               data-ocid="movie.primary_button"
             >
               Book Now

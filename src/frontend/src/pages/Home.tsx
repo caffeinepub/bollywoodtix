@@ -41,7 +41,7 @@ export default function Home() {
   const heroMovie = HERO_MOVIES[heroIdx];
 
   return (
-    <div style={{ backgroundColor: "#120808" }}>
+    <div style={{ backgroundColor: "#F8F5F0" }}>
       {/* Hero Carousel */}
       <section className="relative overflow-hidden" style={{ height: "480px" }}>
         <AnimatePresence mode="wait">
@@ -62,14 +62,14 @@ export default function Home() {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(90deg, rgba(18,8,8,0.9) 0%, rgba(18,8,8,0.5) 50%, rgba(18,8,8,0.2) 100%)",
+                  "linear-gradient(90deg, rgba(26,35,50,0.88) 0%, rgba(26,35,50,0.5) 50%, rgba(26,35,50,0.15) 100%)",
               }}
             />
             <div
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(0deg, rgba(18,8,8,1) 0%, transparent 40%)",
+                  "linear-gradient(0deg, rgba(26,35,50,0.9) 0%, transparent 40%)",
               }}
             />
           </motion.div>
@@ -82,40 +82,40 @@ export default function Home() {
                 src={heroMovie.poster}
                 alt={heroMovie.title}
                 className="w-36 rounded-xl shadow-2xl"
-                style={{ border: "2px solid #D6A23A" }}
+                style={{ border: "2px solid #2A7B6F" }}
               />
             </div>
             <div className="flex-1">
               <Badge
                 className="mb-3"
-                style={{ background: "#7A0E0E", color: "#F4C65A" }}
+                style={{ background: "#2A7B6F", color: "#FFFFFF" }}
               >
                 Now Showing
               </Badge>
               <h1
                 className="text-4xl md:text-5xl font-bold mb-3"
                 style={{
-                  color: "#F2E6D3",
+                  color: "#FFFFFF",
                   fontFamily: "Playfair Display, serif",
-                  textShadow: "0 2px 8px rgba(0,0,0,0.5)",
+                  textShadow: "0 2px 8px rgba(0,0,0,0.4)",
                 }}
               >
                 {heroMovie.title}
               </h1>
               <div className="flex flex-wrap items-center gap-4 mb-4">
                 <div className="flex items-center gap-1">
-                  <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                  <span className="font-bold" style={{ color: "#F4C65A" }}>
+                  <Star className="w-4 h-4 fill-teal-300 text-teal-300" />
+                  <span className="font-bold" style={{ color: "#3dd5c8" }}>
                     {heroMovie.rating}/10
                   </span>
                 </div>
-                <span style={{ color: "#B8B0A6" }}>{heroMovie.duration}</span>
+                <span style={{ color: "#d1d5db" }}>{heroMovie.duration}</span>
                 <div className="flex gap-1">
                   {heroMovie.genre.map((g) => (
                     <Badge
                       key={g}
                       variant="outline"
-                      style={{ borderColor: "#D6A23A", color: "#D6A23A" }}
+                      style={{ borderColor: "#3d9e90", color: "#3d9e90" }}
                     >
                       {g}
                     </Badge>
@@ -124,7 +124,7 @@ export default function Home() {
               </div>
               <p
                 className="text-sm mb-6 max-w-md leading-relaxed"
-                style={{ color: "#B8B0A6" }}
+                style={{ color: "#d1d5db" }}
               >
                 {heroMovie.synopsis.slice(0, 150)}...
               </p>
@@ -133,7 +133,7 @@ export default function Home() {
                   <Button
                     size="lg"
                     className="font-bold tracking-wide"
-                    style={{ background: "#F4C65A", color: "#120808" }}
+                    style={{ background: "#2A7B6F", color: "#FFFFFF" }}
                     data-ocid="hero.primary_button"
                   >
                     <Zap className="w-4 h-4 mr-2" /> BOOK NOW
@@ -145,8 +145,8 @@ export default function Home() {
                     variant="outline"
                     className="font-semibold"
                     style={{
-                      borderColor: "#D6A23A",
-                      color: "#D6A23A",
+                      borderColor: "#3d9e90",
+                      color: "#3d9e90",
                       background: "transparent",
                     }}
                     data-ocid="hero.secondary_button"
@@ -164,9 +164,9 @@ export default function Home() {
           onClick={prevHero}
           className="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
           style={{
-            background: "rgba(214,162,58,0.2)",
-            border: "1px solid #D6A23A",
-            color: "#D6A23A",
+            background: "rgba(42,123,111,0.25)",
+            border: "1px solid #2A7B6F",
+            color: "#3d9e90",
           }}
           data-ocid="hero.button"
         >
@@ -177,9 +177,9 @@ export default function Home() {
           onClick={nextHero}
           className="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full flex items-center justify-center transition-all hover:scale-110"
           style={{
-            background: "rgba(214,162,58,0.2)",
-            border: "1px solid #D6A23A",
-            color: "#D6A23A",
+            background: "rgba(42,123,111,0.25)",
+            border: "1px solid #2A7B6F",
+            color: "#3d9e90",
           }}
           data-ocid="hero.button"
         >
@@ -196,7 +196,7 @@ export default function Home() {
               style={{
                 width: i === heroIdx ? "24px" : "8px",
                 height: "8px",
-                background: i === heroIdx ? "#F4C65A" : "#D6A23A55",
+                background: i === heroIdx ? "#2A7B6F" : "#2A7B6F55",
               }}
             />
           ))}
@@ -210,14 +210,14 @@ export default function Home() {
             <h2
               className="text-2xl font-bold"
               style={{
-                color: "#F2E6D3",
+                color: "#1A2332",
                 fontFamily: "Playfair Display, serif",
               }}
             >
               Now Showing in{" "}
-              <span style={{ color: "#F4C65A" }}>{selectedCity}</span>
+              <span style={{ color: "#2A7B6F" }}>{selectedCity}</span>
             </h2>
-            <p className="text-sm mt-1" style={{ color: "#B8B0A6" }}>
+            <p className="text-sm mt-1" style={{ color: "#6B7280" }}>
               Book your favourite films today
             </p>
           </div>
@@ -226,8 +226,8 @@ export default function Home() {
               variant="outline"
               size="sm"
               style={{
-                borderColor: "#D6A23A",
-                color: "#D6A23A",
+                borderColor: "#2A7B6F",
+                color: "#2A7B6F",
                 background: "transparent",
               }}
               data-ocid="home.link"
@@ -255,15 +255,15 @@ export default function Home() {
         className="py-12"
         style={{
           background:
-            "linear-gradient(180deg, #120808 0%, #1a0e0e 50%, #120808 100%)",
+            "linear-gradient(180deg, #F2F0EC 0%, #EEF0F2 50%, #F2F0EC 100%)",
         }}
       >
         <div className="max-w-7xl mx-auto px-4">
           <h2
             className="text-2xl font-bold mb-6"
-            style={{ color: "#F2E6D3", fontFamily: "Playfair Display, serif" }}
+            style={{ color: "#1A2332", fontFamily: "Playfair Display, serif" }}
           >
-            Discover <span style={{ color: "#F4C65A" }}>New Releases</span>
+            Discover <span style={{ color: "#2A7B6F" }}>New Releases</span>
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
             {upcoming.map((movie, i) => (
@@ -286,9 +286,9 @@ export default function Home() {
         <div className="mb-6">
           <h2
             className="text-2xl font-bold"
-            style={{ color: "#F2E6D3", fontFamily: "Playfair Display, serif" }}
+            style={{ color: "#1A2332", fontFamily: "Playfair Display, serif" }}
           >
-            Popular <span style={{ color: "#F4C65A" }}>Multiplexes</span>
+            Popular <span style={{ color: "#2A7B6F" }}>Multiplexes</span>
           </h2>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -302,14 +302,14 @@ export default function Home() {
             >
               <div
                 className="rounded-xl p-5 flex flex-col gap-3"
-                style={{ background: "#2A2F35", border: "1px solid #3a3f45" }}
+                style={{ background: "#FFFFFF", border: "1px solid #E5E0D8" }}
               >
                 <div className="flex items-start justify-between">
                   <div>
                     <h3
                       className="font-bold"
                       style={{
-                        color: "#F2E6D3",
+                        color: "#1A2332",
                         fontFamily: "Playfair Display, serif",
                       }}
                     >
@@ -318,18 +318,18 @@ export default function Home() {
                     <div className="flex items-center gap-1 mt-1">
                       <MapPin
                         className="w-3 h-3"
-                        style={{ color: "#D6A23A" }}
+                        style={{ color: "#2A7B6F" }}
                       />
-                      <span className="text-xs" style={{ color: "#B8B0A6" }}>
+                      <span className="text-xs" style={{ color: "#6B7280" }}>
                         {theatre.city}
                       </span>
                     </div>
                   </div>
-                  <Badge style={{ background: "#3B0A0A", color: "#F4C65A" }}>
+                  <Badge style={{ background: "#E8F5F3", color: "#2A7B6F" }}>
                     {theatre.city}
                   </Badge>
                 </div>
-                <p className="text-xs" style={{ color: "#B8B0A6" }}>
+                <p className="text-xs" style={{ color: "#6B7280" }}>
                   {theatre.address}
                 </p>
                 <div className="flex flex-wrap gap-2">
@@ -338,7 +338,7 @@ export default function Home() {
                       key={f}
                       variant="outline"
                       className="text-xs"
-                      style={{ borderColor: "#4a3020", color: "#D6A23A" }}
+                      style={{ borderColor: "#B8D8D4", color: "#2A7B6F" }}
                     >
                       {f}
                     </Badge>
@@ -349,11 +349,11 @@ export default function Home() {
                     <button
                       type="button"
                       key={t}
-                      className="text-xs px-2 py-1 rounded transition-colors hover:bg-yellow-400 hover:text-black"
+                      className="text-xs px-2 py-1 rounded transition-colors hover:bg-teal-600 hover:text-white"
                       style={{
-                        background: "#3B0A0A",
-                        color: "#F2E6D3",
-                        border: "1px solid #5a2a10",
+                        background: "#E8F5F3",
+                        color: "#2A7B6F",
+                        border: "1px solid #B8D8D4",
                       }}
                     >
                       {t}
@@ -371,30 +371,30 @@ export default function Home() {
         <div
           className="rounded-2xl p-8 flex flex-col md:flex-row items-center justify-between gap-6"
           style={{
-            background: "linear-gradient(135deg, #3B0A0A 0%, #6A2A10 100%)",
-            border: "1px solid #D6A23A44",
+            background: "linear-gradient(135deg, #2A7B6F 0%, #4A6B7C 100%)",
+            border: "1px solid #3d9e9044",
           }}
         >
           <div>
             <p
               className="text-xs font-semibold tracking-widest mb-1"
-              style={{ color: "#D6A23A" }}
+              style={{ color: "#a8e6df" }}
             >
               LIMITED TIME OFFER
             </p>
             <h3
               className="text-2xl font-bold"
               style={{
-                color: "#F2E6D3",
+                color: "#FFFFFF",
                 fontFamily: "Playfair Display, serif",
               }}
             >
-              Get <span style={{ color: "#F4C65A" }}>20% OFF</span> on First
+              Get <span style={{ color: "#a8e6df" }}>20% OFF</span> on First
               Booking
             </h3>
-            <p className="text-sm mt-1" style={{ color: "#B8B0A6" }}>
+            <p className="text-sm mt-1" style={{ color: "#d1faf6" }}>
               Use code{" "}
-              <span style={{ color: "#F4C65A", fontWeight: 700 }}>BOLLY20</span>{" "}
+              <span style={{ color: "#FFFFFF", fontWeight: 700 }}>BOLLY20</span>{" "}
               at checkout
             </p>
           </div>
@@ -402,7 +402,7 @@ export default function Home() {
             <Button
               size="lg"
               className="font-bold"
-              style={{ background: "#F4C65A", color: "#120808" }}
+              style={{ background: "#FFFFFF", color: "#2A7B6F" }}
               data-ocid="home.primary_button"
             >
               Explore Movies

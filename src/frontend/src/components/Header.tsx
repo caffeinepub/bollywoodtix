@@ -63,9 +63,10 @@ export default function Header() {
 
   return (
     <header
-      className="sticky top-0 z-50 shadow-lg"
+      className="sticky top-0 z-50 shadow-sm"
       style={{
-        background: "linear-gradient(135deg, #3B0A0A 0%, #6A2A10 100%)",
+        background: "#FFFFFF",
+        borderBottom: "1px solid #E5E0D8",
       }}
     >
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center gap-4">
@@ -75,10 +76,10 @@ export default function Header() {
           className="flex items-center gap-2 flex-shrink-0"
           data-ocid="header.link"
         >
-          <Film className="w-7 h-7" style={{ color: "#F4C65A" }} />
+          <Film className="w-7 h-7" style={{ color: "#2A7B6F" }} />
           <span
             className="text-xl font-bold tracking-widest hidden sm:block"
-            style={{ color: "#F4C65A", fontFamily: "Playfair Display, serif" }}
+            style={{ color: "#2A7B6F", fontFamily: "Playfair Display, serif" }}
           >
             BOLLYTIX
           </span>
@@ -96,8 +97,8 @@ export default function Header() {
             <Link
               key={link.label}
               to={link.to}
-              className="text-sm font-medium transition-colors hover:text-yellow-300"
-              style={{ color: "#F2E6D3" }}
+              className="text-sm font-medium transition-colors hover:text-teal-600"
+              style={{ color: "#4A6B7C" }}
               data-ocid="header.link"
             >
               {link.label}
@@ -117,9 +118,9 @@ export default function Header() {
               placeholder="Search movies..."
               className="pl-9 py-1.5 h-9 text-sm"
               style={{
-                background: "#2A2F35",
-                border: "1px solid #4a3020",
-                color: "#F2E6D3",
+                background: "#F8F5F0",
+                border: "1px solid #E5E0D8",
+                color: "#1A2332",
               }}
               data-ocid="header.search_input"
             />
@@ -128,23 +129,27 @@ export default function Header() {
 
         {/* City Selector */}
         <div className="hidden sm:flex items-center gap-1">
-          <MapPin className="w-4 h-4" style={{ color: "#D6A23A" }} />
+          <MapPin className="w-4 h-4" style={{ color: "#2A7B6F" }} />
           <Select value={selectedCity} onValueChange={setSelectedCity}>
             <SelectTrigger
-              className="h-9 w-32 text-sm border-0"
-              style={{ background: "rgba(255,255,255,0.1)", color: "#F2E6D3" }}
+              className="h-9 w-32 text-sm"
+              style={{
+                background: "#F8F5F0",
+                border: "1px solid #E5E0D8",
+                color: "#1A2332",
+              }}
               data-ocid="header.select"
             >
               <SelectValue />
             </SelectTrigger>
             <SelectContent
-              style={{ background: "#2A2F35", border: "1px solid #4a3020" }}
+              style={{ background: "#FFFFFF", border: "1px solid #E5E0D8" }}
             >
               {CITIES.map((city) => (
                 <SelectItem
                   key={city}
                   value={city}
-                  style={{ color: "#F2E6D3" }}
+                  style={{ color: "#1A2332" }}
                 >
                   {city}
                 </SelectItem>
@@ -160,7 +165,7 @@ export default function Header() {
               variant="ghost"
               size="sm"
               className="hidden sm:flex gap-1"
-              style={{ color: "#F2E6D3" }}
+              style={{ color: "#4A6B7C" }}
             >
               <Ticket className="w-4 h-4" />
             </Button>
@@ -170,7 +175,7 @@ export default function Header() {
             <div className="flex items-center gap-2">
               <span
                 className="hidden sm:block text-sm"
-                style={{ color: "#D6A23A" }}
+                style={{ color: "#2A7B6F" }}
               >
                 Hi, {userName.split(" ")[0]}
               </span>
@@ -178,7 +183,7 @@ export default function Header() {
                 variant="ghost"
                 size="sm"
                 onClick={() => setIsLoggedIn(false)}
-                style={{ color: "#F2E6D3" }}
+                style={{ color: "#4A6B7C" }}
                 data-ocid="header.button"
               >
                 <LogOut className="w-4 h-4" />
@@ -189,7 +194,7 @@ export default function Header() {
               size="sm"
               onClick={() => setLoginOpen(true)}
               className="font-semibold text-sm"
-              style={{ background: "#F4C65A", color: "#120808" }}
+              style={{ background: "#2A7B6F", color: "#FFFFFF" }}
               data-ocid="header.button"
             >
               <User className="w-4 h-4 mr-1" />
@@ -201,7 +206,7 @@ export default function Header() {
             variant="ghost"
             size="sm"
             className="lg:hidden"
-            style={{ color: "#F2E6D3" }}
+            style={{ color: "#4A6B7C" }}
             onClick={() => setMobileOpen(!mobileOpen)}
             data-ocid="header.button"
           >
@@ -218,7 +223,7 @@ export default function Header() {
       {mobileOpen && (
         <div
           className="lg:hidden px-4 pb-4 flex flex-col gap-3"
-          style={{ background: "#3B0A0A" }}
+          style={{ background: "#F8F5F0", borderTop: "1px solid #E5E0D8" }}
         >
           {[
             { label: "Movies", to: "/movies" },
@@ -230,7 +235,7 @@ export default function Header() {
               to={link.to}
               onClick={() => setMobileOpen(false)}
               className="text-sm py-1"
-              style={{ color: "#F2E6D3" }}
+              style={{ color: "#4A6B7C" }}
             >
               {link.label}
             </Link>
@@ -241,15 +246,15 @@ export default function Header() {
               placeholder="Search movies..."
               className="flex-1 h-8 text-sm"
               style={{
-                background: "#2A2F35",
-                border: "1px solid #4a3020",
-                color: "#F2E6D3",
+                background: "#FFFFFF",
+                border: "1px solid #E5E0D8",
+                color: "#1A2332",
               }}
             />
             <Button
               type="submit"
               size="sm"
-              style={{ background: "#F4C65A", color: "#120808" }}
+              style={{ background: "#2A7B6F", color: "#FFFFFF" }}
             >
               <Search className="w-4 h-4" />
             </Button>
@@ -261,16 +266,16 @@ export default function Header() {
       <Dialog open={loginOpen} onOpenChange={setLoginOpen}>
         <DialogContent
           style={{
-            background: "#1F2328",
-            border: "1px solid #D6A23A",
-            color: "#F2E6D3",
+            background: "#FFFFFF",
+            border: "1px solid #E5E0D8",
+            color: "#1A2332",
           }}
           data-ocid="login.dialog"
         >
           <DialogHeader>
             <DialogTitle
               style={{
-                color: "#F4C65A",
+                color: "#2A7B6F",
                 fontFamily: "Playfair Display, serif",
               }}
             >
@@ -279,7 +284,7 @@ export default function Header() {
           </DialogHeader>
           <div className="space-y-4 pt-2">
             <div>
-              <Label htmlFor="login-name" style={{ color: "#B8B0A6" }}>
+              <Label htmlFor="login-name" style={{ color: "#6B7280" }}>
                 Your Name
               </Label>
               <Input
@@ -289,9 +294,9 @@ export default function Header() {
                 placeholder="Enter your name"
                 className="mt-1"
                 style={{
-                  background: "#2A2F35",
-                  border: "1px solid #4a3020",
-                  color: "#F2E6D3",
+                  background: "#F8F5F0",
+                  border: "1px solid #E5E0D8",
+                  color: "#1A2332",
                 }}
                 data-ocid="login.input"
                 onKeyDown={(e) => e.key === "Enter" && handleLogin()}
@@ -299,7 +304,7 @@ export default function Header() {
             </div>
             <Button
               className="w-full font-semibold"
-              style={{ background: "#F4C65A", color: "#120808" }}
+              style={{ background: "#2A7B6F", color: "#FFFFFF" }}
               onClick={handleLogin}
               data-ocid="login.submit_button"
             >

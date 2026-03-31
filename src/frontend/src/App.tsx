@@ -24,10 +24,7 @@ const hashHistory = createHashHistory();
 function Layout() {
   return (
     <AppProvider>
-      <div
-        className="min-h-screen flex flex-col"
-        style={{ backgroundColor: "#120808" }}
-      >
+      <div className="min-h-screen flex flex-col bg-background">
         <Header />
         <main className="flex-1">
           <Outlet />

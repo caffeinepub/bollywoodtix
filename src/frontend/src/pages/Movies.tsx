@@ -41,10 +41,10 @@ export default function Movies() {
   const upcoming = filtered.filter((m) => m.status === "upcoming");
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8" style={{ color: "#F2E6D3" }}>
+    <div className="max-w-7xl mx-auto px-4 py-8" style={{ color: "#1A2332" }}>
       <h1
         className="text-3xl font-bold mb-6"
-        style={{ fontFamily: "Playfair Display, serif", color: "#F2E6D3" }}
+        style={{ fontFamily: "Playfair Display, serif", color: "#1A2332" }}
       >
         Movies
       </h1>
@@ -52,11 +52,11 @@ export default function Movies() {
       {/* Filters */}
       <div
         className="flex flex-col gap-4 mb-8 p-4 rounded-xl"
-        style={{ background: "#2A2F35", border: "1px solid #3a3f45" }}
+        style={{ background: "#FFFFFF", border: "1px solid #E5E0D8" }}
       >
         <div className="flex items-center gap-3">
-          <SlidersHorizontal className="w-4 h-4" style={{ color: "#D6A23A" }} />
-          <span className="text-sm font-semibold" style={{ color: "#D6A23A" }}>
+          <SlidersHorizontal className="w-4 h-4" style={{ color: "#2A7B6F" }} />
+          <span className="text-sm font-semibold" style={{ color: "#2A7B6F" }}>
             Filters
           </span>
         </div>
@@ -71,15 +71,15 @@ export default function Movies() {
             placeholder="Search movies, cast, genre..."
             className="pl-9"
             style={{
-              background: "#1F2328",
-              border: "1px solid #4a3020",
-              color: "#F2E6D3",
+              background: "#F8F5F0",
+              border: "1px solid #E5E0D8",
+              color: "#1A2332",
             }}
             data-ocid="movies.search_input"
           />
         </div>
         <div>
-          <p className="text-xs mb-2" style={{ color: "#B8B0A6" }}>
+          <p className="text-xs mb-2" style={{ color: "#6B7280" }}>
             Genre
           </p>
           <div className="flex flex-wrap gap-2">
@@ -90,9 +90,9 @@ export default function Movies() {
                 onClick={() => setGenre(g)}
                 className="text-xs px-3 py-1.5 rounded-full transition-all"
                 style={{
-                  background: genre === g ? "#F4C65A" : "#1F2328",
-                  color: genre === g ? "#120808" : "#B8B0A6",
-                  border: `1px solid ${genre === g ? "#F4C65A" : "#4a3020"}`,
+                  background: genre === g ? "#2A7B6F" : "#F2F0EC",
+                  color: genre === g ? "#FFFFFF" : "#4A6B7C",
+                  border: `1px solid ${genre === g ? "#2A7B6F" : "#E5E0D8"}`,
                   fontWeight: genre === g ? 600 : 400,
                 }}
                 data-ocid="movies.tab"
@@ -103,7 +103,7 @@ export default function Movies() {
           </div>
         </div>
         <div>
-          <p className="text-xs mb-2" style={{ color: "#B8B0A6" }}>
+          <p className="text-xs mb-2" style={{ color: "#6B7280" }}>
             Language
           </p>
           <div className="flex flex-wrap gap-2">
@@ -114,9 +114,9 @@ export default function Movies() {
                 onClick={() => setLang(l)}
                 className="text-xs px-3 py-1.5 rounded-full transition-all"
                 style={{
-                  background: lang === l ? "#D6A23A" : "#1F2328",
-                  color: lang === l ? "#120808" : "#B8B0A6",
-                  border: `1px solid ${lang === l ? "#D6A23A" : "#4a3020"}`,
+                  background: lang === l ? "#4A6B7C" : "#F2F0EC",
+                  color: lang === l ? "#FFFFFF" : "#4A6B7C",
+                  border: `1px solid ${lang === l ? "#4A6B7C" : "#E5E0D8"}`,
                   fontWeight: lang === l ? 600 : 400,
                 }}
                 data-ocid="movies.tab"
@@ -129,17 +129,17 @@ export default function Movies() {
       </div>
 
       <Tabs defaultValue="now_showing">
-        <TabsList style={{ background: "#2A2F35" }}>
+        <TabsList style={{ background: "#F2F0EC" }}>
           <TabsTrigger
             value="now_showing"
-            style={{ color: "#F2E6D3" }}
+            style={{ color: "#1A2332" }}
             data-ocid="movies.tab"
           >
             Now Showing ({nowShowing.length})
           </TabsTrigger>
           <TabsTrigger
             value="upcoming"
-            style={{ color: "#F2E6D3" }}
+            style={{ color: "#1A2332" }}
             data-ocid="movies.tab"
           >
             Upcoming ({upcoming.length})
@@ -149,7 +149,7 @@ export default function Movies() {
         <TabsContent value="now_showing" className="mt-6">
           {nowShowing.length === 0 ? (
             <div className="text-center py-16" data-ocid="movies.empty_state">
-              <p style={{ color: "#B8B0A6" }}>No movies match your filters.</p>
+              <p style={{ color: "#6B7280" }}>No movies match your filters.</p>
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -170,7 +170,7 @@ export default function Movies() {
         <TabsContent value="upcoming" className="mt-6">
           {upcoming.length === 0 ? (
             <div className="text-center py-16" data-ocid="movies.empty_state">
-              <p style={{ color: "#B8B0A6" }}>No movies match your filters.</p>
+              <p style={{ color: "#6B7280" }}>No movies match your filters.</p>
             </div>
           ) : (
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">

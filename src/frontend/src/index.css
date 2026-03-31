@@ -6,71 +6,71 @@
   :root {
     --radius: 0.625rem;
 
-    /* BollywoodTix cinematic palette — OKLCH L C H */
-    /* Deep wine red background: #120808 */
-    --background: 0.13 0.04 20;
-    --foreground: 0.93 0.02 60;
+    /* BollywoodTix peaceful palette — OKLCH L C H */
+    /* Soft warm white background: #F8F5F0 */
+    --background: 0.97 0.008 75;
+    --foreground: 0.2 0.03 250;
 
-    /* Container charcoal: #1F2328 */
-    --card: 0.18 0.005 250;
-    --card-foreground: 0.93 0.02 60;
+    /* Card white */
+    --card: 1 0 0;
+    --card-foreground: 0.2 0.03 250;
 
     /* Popover */
-    --popover: 0.18 0.005 250;
-    --popover-foreground: 0.93 0.02 60;
+    --popover: 1 0 0;
+    --popover-foreground: 0.2 0.03 250;
 
-    /* Gold primary: #F4C65A */
-    --primary: 0.84 0.16 80;
-    --primary-foreground: 0.13 0.04 20;
+    /* Teal primary: #2A7B6F */
+    --primary: 0.52 0.09 175;
+    --primary-foreground: 1 0 0;
 
-    /* Secondary muted */
-    --secondary: 0.22 0.005 250;
-    --secondary-foreground: 0.93 0.02 60;
+    /* Secondary soft slate */
+    --secondary: 0.94 0.01 75;
+    --secondary-foreground: 0.2 0.03 250;
 
     /* Muted */
-    --muted: 0.22 0.005 250;
-    --muted-foreground: 0.7 0.01 60;
+    --muted: 0.94 0.01 75;
+    --muted-foreground: 0.53 0.01 260;
 
-    /* Accent gold: #D6A23A */
-    --accent: 0.75 0.14 75;
-    --accent-foreground: 0.13 0.04 20;
+    /* Accent teal */
+    --accent: 0.52 0.09 175;
+    --accent-foreground: 1 0 0;
 
     /* Destructive */
     --destructive: 0.577 0.245 27.325;
     --destructive-foreground: 0.985 0 0;
 
     /* Border */
-    --border: 0.28 0.01 250;
-    --input: 0.28 0.01 250;
-    --ring: 0.84 0.16 80;
+    --border: 0.9 0.01 75;
+    --input: 0.9 0.01 75;
+    --ring: 0.52 0.09 175;
 
     /* Charts */
-    --chart-1: 0.646 0.222 41.116;
-    --chart-2: 0.6 0.118 184.704;
-    --chart-3: 0.398 0.07 227.392;
-    --chart-4: 0.828 0.189 84.429;
-    --chart-5: 0.769 0.188 70.08;
+    --chart-1: 0.52 0.09 175;
+    --chart-2: 0.5 0.05 220;
+    --chart-3: 0.6 0.07 150;
+    --chart-4: 0.7 0.08 120;
+    --chart-5: 0.65 0.08 200;
 
     /* Sidebar */
-    --sidebar: 0.16 0.03 20;
-    --sidebar-foreground: 0.93 0.02 60;
-    --sidebar-primary: 0.84 0.16 80;
-    --sidebar-primary-foreground: 0.13 0.04 20;
-    --sidebar-accent: 0.22 0.005 250;
-    --sidebar-accent-foreground: 0.93 0.02 60;
-    --sidebar-border: 0.28 0.01 250;
-    --sidebar-ring: 0.84 0.16 80;
+    --sidebar: 0.96 0.008 75;
+    --sidebar-foreground: 0.2 0.03 250;
+    --sidebar-primary: 0.52 0.09 175;
+    --sidebar-primary-foreground: 1 0 0;
+    --sidebar-accent: 0.94 0.01 75;
+    --sidebar-accent-foreground: 0.2 0.03 250;
+    --sidebar-border: 0.9 0.01 75;
+    --sidebar-ring: 0.52 0.09 175;
 
     /* Custom BollywoodTix tokens */
-    --gold: #d6a23a;
-    --gold-light: #f0c55a;
-    --btn-primary: #f4c65a;
-    --text-primary: #f2e6d3;
-    --text-muted: #b8b0a6;
-    --accent-red: #7a0e0e;
-    --bg-deep: #120808;
-    --bg-container: #1f2328;
-    --bg-card: #2a2f35;
+    --teal: #2a7b6f;
+    --teal-light: #3d9e90;
+    --btn-primary: #2a7b6f;
+    --text-primary: #1a2332;
+    --text-muted: #6b7280;
+    --slate: #4a6b7c;
+    --bg-warm: #f8f5f0;
+    --bg-container: #f2f0ec;
+    --bg-card: #ffffff;
   }
 
   * {
@@ -80,8 +80,8 @@
   body {
     @apply bg-background text-foreground;
     font-family: "Inter", sans-serif;
-    background-color: #120808;
-    color: #f2e6d3;
+    background-color: #f8f5f0;
+    color: #1a2332;
   }
 
   h1,
@@ -97,17 +97,17 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #1f2328;
+  background: #f2f0ec;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d6a23a55;
+  background: #2a7b6f55;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #d6a23a;
+  background: #2a7b6f;
 }
 
-/* Gold shimmer animation */
+/* Teal shimmer animation */
 @keyframes shimmer {
   0% {
     background-position: -200% center;
@@ -118,7 +118,7 @@
 }
 
 .gold-shimmer {
-  background: linear-gradient(90deg, #d6a23a, #f0c55a, #d6a23a, #f0c55a);
+  background: linear-gradient(90deg, #2a7b6f, #3d9e90, #2a7b6f, #3d9e90);
   background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -132,5 +132,5 @@
   cursor: pointer;
 }
 .seat-selected {
-  box-shadow: 0 0 8px #f4c65a88;
+  box-shadow: 0 0 8px #2a7b6f88;
 }
