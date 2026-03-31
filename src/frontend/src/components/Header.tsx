@@ -89,8 +89,7 @@ export default function Header() {
         <nav className="hidden lg:flex items-center gap-6 flex-1 ml-6">
           {[
             { label: "Movies", to: "/movies" },
-            { label: "Cinemas", to: "/movies" },
-            { label: "Offers", to: "/movies" },
+            { label: "Cinemas", to: "/theatres" },
             { label: "My Bookings", to: "/bookings" },
             { label: "Admin", to: "/admin" },
           ].map((link) => (
@@ -227,6 +226,7 @@ export default function Header() {
         >
           {[
             { label: "Movies", to: "/movies" },
+            { label: "Cinemas", to: "/theatres" },
             { label: "My Bookings", to: "/bookings" },
             { label: "Admin", to: "/admin" },
           ].map((link) => (

@@ -23,7 +23,7 @@ import {
   Users,
   X,
 } from "lucide-react";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
 import { toast } from "sonner";
 import { useApp } from "../context/AppContext";
@@ -31,6 +31,19 @@ import { MOVIES, THEATRES } from "../data/mockData";
 import type { Movie, Theatre } from "../data/mockData";
 
 const ADMIN_PASSWORD = "admin123";
+
+const EMPTY_FORM = {
+  title: "",
+  genre: "",
+  language: "",
+  duration: "",
+  rating: "",
+  director: "",
+  cast: "",
+  synopsis: "",
+  certificate: "",
+  status: "now_showing" as "now_showing" | "upcoming",
+};
 
 export default function Admin() {
   const [authed, setAuthed] = useState(false);
@@ -46,6 +59,10 @@ export default function Admin() {
 
   const [editTheatreId, setEditTheatreId] = useState<string | null>(null);
   const [editTheatreName, setEditTheatreName] = useState("");
+
+  const [showAddForm, setShowAddForm] = useState(false);
+  const [form, setForm] = useState(EMPTY_FORM);
+  const [formErr, setFormErr] = useState("");
 
   const handleLogin = () => {
     if (pw === ADMIN_PASSWORD) {
@@ -82,6 +99,48 @@ export default function Admin() {
     toast.success("Theatre updated");
   };
 
+  const handleAddMovie = () => {
+    if (!form.title.trim()) {
+      setFormErr("Title is required.");
+      return;
+    }
+    const newMovie: Movie = {
+      id: Date.now().toString(),
+      title: form.title.trim(),
+      genre: form.genre
+        .split(",")
+        .map((g) => g.trim())
+        .filter(Boolean),
+      language: form.language
+        .split(",")
+        .map((l) => l.trim())
+        .filter(Boolean),
+      duration: form.duration.trim() || "TBA",
+      rating: Number.parseFloat(form.rating) || 0,
+      director: form.director.trim(),
+      cast: form.cast
+        .split(",")
+        .map((c) => c.trim())
+        .filter(Boolean),
+      synopsis: form.synopsis.trim(),
+      certificate: form.certificate.trim() || "UA",
+      status: form.status,
+      poster: "/assets/generated/poster-jawan.dim_300x450.jpg",
+      banner: "/assets/generated/hero-banner.dim_1200x450.jpg",
+    };
+    setMovies((prev) => [newMovie, ...prev]);
+    toast.success("Movie added successfully");
+    setShowAddForm(false);
+    setForm(EMPTY_FORM);
+    setFormErr("");
+  };
+
+  const cancelAddForm = () => {
+    setShowAddForm(false);
+    setForm(EMPTY_FORM);
+    setFormErr("");
+  };
+
   // Payment stats
   const totalRevenue = bookings.reduce((sum, b) => sum + b.totalAmount, 0);
   const totalBookings = bookings.length;
@@ -115,6 +174,12 @@ export default function Admin() {
       color: "#F9A8D4",
     },
   ];
+
+  const inputStyle = {
+    background: "#1F2328",
+    border: "1px solid #3a3f45",
+    color: "#F2E6D3",
+  };
 
   if (!authed) {
     return (
@@ -265,6 +330,295 @@ export default function Admin() {
 
         {/* Movies Tab */}
         <TabsContent value="movies" className="mt-6">
+          {/* Header row with Add button */}
+          <div className="flex items-center justify-between mb-4">
+            <p className="text-sm" style={{ color: "#B8B0A6" }}>
+              {movies.length} movie{movies.length !== 1 ? "s" : ""} in the
+              system
+            </p>
+            <Button
+              onClick={() => setShowAddForm((v) => !v)}
+              style={{
+                background: showAddForm ? "#3a3f45" : "#F4C65A",
+                color: showAddForm ? "#F2E6D3" : "#120808",
+              }}
+              className="flex items-center gap-2 font-semibold"
+              data-ocid="admin.open_modal_button"
+            >
+              <Plus className="w-4 h-4" />
+              Add New Movie
+            </Button>
+          </div>
+
+          {/* Inline Add Movie Form */}
+          <AnimatePresence>
+            {showAddForm && (
+              <motion.div
+                key="add-movie-form"
+                initial={{ opacity: 0, y: -12 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -12 }}
+                transition={{ duration: 0.2 }}
+                className="rounded-xl p-6 mb-6"
+                style={{ background: "#2A2F35", border: "1px solid #3a3f45" }}
+                data-ocid="admin.panel"
+              >
+                <h3
+                  className="text-lg font-bold mb-5"
+                  style={{
+                    color: "#F4C65A",
+                    fontFamily: "Playfair Display, serif",
+                  }}
+                >
+                  🎬 New Movie Release
+                </h3>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {/* Title */}
+                  <div className="md:col-span-2">
+                    <Label
+                      className="text-xs uppercase tracking-wider"
+                      style={{ color: "#B8B0A6" }}
+                    >
+                      Title <span style={{ color: "#ff6b6b" }}>*</span>
+                    </Label>
+                    <Input
+                      value={form.title}
+                      onChange={(e) => {
+                        setForm((p) => ({ ...p, title: e.target.value }));
+                        setFormErr("");
+                      }}
+                      placeholder="e.g. Pushpa 2: The Rule"
+                      className="mt-1"
+                      style={inputStyle}
+                      data-ocid="admin.input"
+                    />
+                    {formErr && (
+                      <p
+                        className="text-xs mt-1"
+                        style={{ color: "#ff6b6b" }}
+                        data-ocid="admin.error_state"
+                      >
+                        {formErr}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Genre */}
+                  <div>
+                    <Label
+                      className="text-xs uppercase tracking-wider"
+                      style={{ color: "#B8B0A6" }}
+                    >
+                      Genre
+                    </Label>
+                    <Input
+                      value={form.genre}
+                      onChange={(e) =>
+                        setForm((p) => ({ ...p, genre: e.target.value }))
+                      }
+                      placeholder="Action, Thriller"
+                      className="mt-1"
+                      style={inputStyle}
+                      data-ocid="admin.input"
+                    />
+                  </div>
+
+                  {/* Language */}
+                  <div>
+                    <Label
+                      className="text-xs uppercase tracking-wider"
+                      style={{ color: "#B8B0A6" }}
+                    >
+                      Language
+                    </Label>
+                    <Input
+                      value={form.language}
+                      onChange={(e) =>
+                        setForm((p) => ({ ...p, language: e.target.value }))
+                      }
+                      placeholder="Hindi, Tamil"
+                      className="mt-1"
+                      style={inputStyle}
+                      data-ocid="admin.input"
+                    />
+                  </div>
+
+                  {/* Duration */}
+                  <div>
+                    <Label
+                      className="text-xs uppercase tracking-wider"
+                      style={{ color: "#B8B0A6" }}
+                    >
+                      Duration
+                    </Label>
+                    <Input
+                      value={form.duration}
+                      onChange={(e) =>
+                        setForm((p) => ({ ...p, duration: e.target.value }))
+                      }
+                      placeholder="2h 30m"
+                      className="mt-1"
+                      style={inputStyle}
+                      data-ocid="admin.input"
+                    />
+                  </div>
+
+                  {/* Rating */}
+                  <div>
+                    <Label
+                      className="text-xs uppercase tracking-wider"
+                      style={{ color: "#B8B0A6" }}
+                    >
+                      Rating (0–10)
+                    </Label>
+                    <Input
+                      type="number"
+                      min={0}
+                      max={10}
+                      step={0.1}
+                      value={form.rating}
+                      onChange={(e) =>
+                        setForm((p) => ({ ...p, rating: e.target.value }))
+                      }
+                      placeholder="8.5"
+                      className="mt-1"
+                      style={inputStyle}
+                      data-ocid="admin.input"
+                    />
+                  </div>
+
+                  {/* Director */}
+                  <div>
+                    <Label
+                      className="text-xs uppercase tracking-wider"
+                      style={{ color: "#B8B0A6" }}
+                    >
+                      Director
+                    </Label>
+                    <Input
+                      value={form.director}
+                      onChange={(e) =>
+                        setForm((p) => ({ ...p, director: e.target.value }))
+                      }
+                      placeholder="Rajkumar Hirani"
+                      className="mt-1"
+                      style={inputStyle}
+                      data-ocid="admin.input"
+                    />
+                  </div>
+
+                  {/* Certificate */}
+                  <div>
+                    <Label
+                      className="text-xs uppercase tracking-wider"
+                      style={{ color: "#B8B0A6" }}
+                    >
+                      Certificate
+                    </Label>
+                    <Input
+                      value={form.certificate}
+                      onChange={(e) =>
+                        setForm((p) => ({ ...p, certificate: e.target.value }))
+                      }
+                      placeholder="UA, A, U"
+                      className="mt-1"
+                      style={inputStyle}
+                      data-ocid="admin.input"
+                    />
+                  </div>
+
+                  {/* Status */}
+                  <div>
+                    <Label
+                      className="text-xs uppercase tracking-wider"
+                      style={{ color: "#B8B0A6" }}
+                    >
+                      Status
+                    </Label>
+                    <select
+                      value={form.status}
+                      onChange={(e) =>
+                        setForm((p) => ({
+                          ...p,
+                          status: e.target.value as "now_showing" | "upcoming",
+                        }))
+                      }
+                      className="mt-1 w-full rounded-md px-3 py-2 text-sm"
+                      style={inputStyle}
+                      data-ocid="admin.select"
+                    >
+                      <option value="now_showing">Now Showing</option>
+                      <option value="upcoming">Upcoming</option>
+                    </select>
+                  </div>
+
+                  {/* Cast */}
+                  <div className="md:col-span-2">
+                    <Label
+                      className="text-xs uppercase tracking-wider"
+                      style={{ color: "#B8B0A6" }}
+                    >
+                      Cast
+                    </Label>
+                    <Input
+                      value={form.cast}
+                      onChange={(e) =>
+                        setForm((p) => ({ ...p, cast: e.target.value }))
+                      }
+                      placeholder="Shah Rukh Khan, Deepika Padukone"
+                      className="mt-1"
+                      style={inputStyle}
+                      data-ocid="admin.input"
+                    />
+                  </div>
+
+                  {/* Synopsis */}
+                  <div className="md:col-span-2">
+                    <Label
+                      className="text-xs uppercase tracking-wider"
+                      style={{ color: "#B8B0A6" }}
+                    >
+                      Synopsis
+                    </Label>
+                    <textarea
+                      value={form.synopsis}
+                      onChange={(e) =>
+                        setForm((p) => ({ ...p, synopsis: e.target.value }))
+                      }
+                      placeholder="Brief description of the movie..."
+                      rows={3}
+                      className="mt-1 w-full rounded-md px-3 py-2 text-sm resize-none"
+                      style={{ ...inputStyle, outline: "none" }}
+                      data-ocid="admin.textarea"
+                    />
+                  </div>
+                </div>
+
+                <div className="flex gap-3 mt-5">
+                  <Button
+                    onClick={handleAddMovie}
+                    className="font-bold"
+                    style={{ background: "#F4C65A", color: "#120808" }}
+                    data-ocid="admin.submit_button"
+                  >
+                    <Plus className="w-4 h-4 mr-1" />
+                    Add Movie
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={cancelAddForm}
+                    style={{ borderColor: "#3a3f45", color: "#B8B0A6" }}
+                    data-ocid="admin.cancel_button"
+                  >
+                    <X className="w-4 h-4 mr-1" />
+                    Cancel
+                  </Button>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           <div
             className="rounded-xl overflow-hidden"
             style={{ border: "1px solid #3a3f45" }}

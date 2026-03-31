@@ -72,17 +72,36 @@ export function AppProvider({ children }: { children: ReactNode }) {
   const [cart, setCartState] = useState<CartState | null>(null);
   const [bookings, setBookings] = useState<BookingData[]>(() => {
     try {
+      const posterMap: Record<string, string> = {
+        jawan: "/assets/generated/poster-jawan.dim_300x450.jpg",
+        animal: "/assets/generated/poster-animal.dim_300x450.jpg",
+        dunki: "/assets/generated/poster-dunki.dim_300x450.jpg",
+        tiger3: "/assets/generated/poster-tiger3.dim_300x450.jpg",
+        sambahadur: "/assets/generated/poster-sambahadur.dim_300x450.jpg",
+        salaar: "/assets/generated/poster-salaar.dim_300x450.jpg",
+        fighter: "/assets/generated/poster-fighter.dim_300x450.jpg",
+        stree2: "/assets/generated/poster-stree2.dim_300x450.jpg",
+        pathaan2: "/assets/generated/poster-pathaan2.dim_300x450.jpg",
+      };
       const stored = JSON.parse(
         localStorage.getItem("bollywood_bookings") || "[]",
       );
-      if (stored.length > 0) return stored;
+      if (stored.length > 0) {
+        // Migrate: fill in missing posters
+        const migrated = stored.map((b: BookingData) => ({
+          ...b,
+          moviePoster: b.moviePoster || posterMap[b.movieId] || "",
+        }));
+        localStorage.setItem("bollywood_bookings", JSON.stringify(migrated));
+        return migrated;
+      }
       // Seed demo bookings for admin view
       const demo: BookingData[] = [
         {
           id: "BT001",
           movieId: "jawan",
           movieTitle: "Jawan",
-          moviePoster: "",
+          moviePoster: "/assets/generated/poster-jawan.dim_300x450.jpg",
           theatreId: "t1",
           theatreName: "PVR Juhu",
           theatreCity: "Mumbai",
@@ -99,7 +118,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
           id: "BT002",
           movieId: "animal",
           movieTitle: "Animal",
-          moviePoster: "",
+          moviePoster: "/assets/generated/poster-animal.dim_300x450.jpg",
           theatreId: "t2",
           theatreName: "INOX Andheri",
           theatreCity: "Mumbai",
@@ -116,7 +135,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
           id: "BT003",
           movieId: "dunki",
           movieTitle: "Dunki",
-          moviePoster: "",
+          moviePoster: "/assets/generated/poster-dunki.dim_300x450.jpg",
           theatreId: "t3",
           theatreName: "Cinepolis Pune",
           theatreCity: "Pune",
@@ -133,7 +152,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
           id: "BT004",
           movieId: "jawan",
           movieTitle: "Jawan",
-          moviePoster: "",
+          moviePoster: "/assets/generated/poster-jawan.dim_300x450.jpg",
           theatreId: "t4",
           theatreName: "PVR Select City",
           theatreCity: "Delhi",
@@ -150,7 +169,7 @@ export function AppProvider({ children }: { children: ReactNode }) {
           id: "BT005",
           movieId: "tiger3",
           movieTitle: "Tiger 3",
-          moviePoster: "",
+          moviePoster: "/assets/generated/poster-tiger3.dim_300x450.jpg",
           theatreId: "t5",
           theatreName: "INOX Forum Mall",
           theatreCity: "Bangalore",

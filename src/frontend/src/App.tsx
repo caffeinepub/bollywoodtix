@@ -18,6 +18,7 @@ import MovieDetail from "./pages/MovieDetail";
 import Movies from "./pages/Movies";
 import MyBookings from "./pages/MyBookings";
 import SeatSelection from "./pages/SeatSelection";
+import Theatres from "./pages/Theatres";
 
 const hashHistory = createHashHistory();
 
@@ -53,6 +54,11 @@ const movieDetailRoute = createRoute({
   path: "/movies/$id",
   component: MovieDetail,
 });
+const theatresRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/theatres",
+  component: Theatres,
+});
 const seatsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/booking/seats",
@@ -83,6 +89,7 @@ const routeTree = rootRoute.addChildren([
   indexRoute,
   moviesRoute,
   movieDetailRoute,
+  theatresRoute,
   seatsRoute,
   checkoutRoute,
   confirmationRoute,
