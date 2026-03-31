@@ -1,4 +1,5 @@
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
   Select,
@@ -7,7 +8,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Building2, MapPin, Search, Star } from "lucide-react";
+import { useNavigate } from "@tanstack/react-router";
+import { Building2, MapPin, Search, Star, Ticket } from "lucide-react";
 import { useState } from "react";
 import { useApp } from "../context/AppContext";
 import { CITIES, THEATRES } from "../data/mockData";
@@ -16,6 +18,7 @@ export default function Theatres() {
   const { selectedCity, setSelectedCity } = useApp();
   const [search, setSearch] = useState("");
   const [cityFilter, setCityFilter] = useState(selectedCity || "All");
+  const navigate = useNavigate();
 
   const filtered = THEATRES.filter((t) => {
     const matchCity = cityFilter === "All" || t.city === cityFilter;
@@ -24,6 +27,11 @@ export default function Theatres() {
       t.address.toLowerCase().includes(search.toLowerCase());
     return matchCity && matchSearch;
   });
+
+  const handleBookNow = (theatre: (typeof THEATRES)[0]) => {
+    setSelectedCity(theatre.city);
+    navigate({ to: "/movies" });
+  };
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
@@ -151,6 +159,19 @@ export default function Theatres() {
                   </Badge>
                 ))}
               </div>
+
+              <Button
+                size="sm"
+                className="mt-1 w-full font-semibold"
+                style={{
+                  background: "#2A7B6F",
+                  color: "#FFFFFF",
+                }}
+                onClick={() => handleBookNow(theatre)}
+              >
+                <Ticket className="w-4 h-4 mr-1.5" />
+                Book Now
+              </Button>
             </div>
           ))}
         </div>
