@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --radius: 0.625rem;
+
+    /* BollywoodTix cinematic palette — OKLCH L C H */
+    /* Deep wine red background: #120808 */
+    --background: 0.13 0.04 20;
+    --foreground: 0.93 0.02 60;
+
+    /* Container charcoal: #1F2328 */
+    --card: 0.18 0.005 250;
+    --card-foreground: 0.93 0.02 60;
+
+    /* Popover */
+    --popover: 0.18 0.005 250;
+    --popover-foreground: 0.93 0.02 60;
+
+    /* Gold primary: #F4C65A */
+    --primary: 0.84 0.16 80;
+    --primary-foreground: 0.13 0.04 20;
+
+    /* Secondary muted */
+    --secondary: 0.22 0.005 250;
+    --secondary-foreground: 0.93 0.02 60;
+
+    /* Muted */
+    --muted: 0.22 0.005 250;
+    --muted-foreground: 0.7 0.01 60;
+
+    /* Accent gold: #D6A23A */
+    --accent: 0.75 0.14 75;
+    --accent-foreground: 0.13 0.04 20;
+
+    /* Destructive */
+    --destructive: 0.577 0.245 27.325;
+    --destructive-foreground: 0.985 0 0;
+
+    /* Border */
+    --border: 0.28 0.01 250;
+    --input: 0.28 0.01 250;
+    --ring: 0.84 0.16 80;
+
+    /* Charts */
+    --chart-1: 0.646 0.222 41.116;
+    --chart-2: 0.6 0.118 184.704;
+    --chart-3: 0.398 0.07 227.392;
+    --chart-4: 0.828 0.189 84.429;
+    --chart-5: 0.769 0.188 70.08;
+
+    /* Sidebar */
+    --sidebar: 0.16 0.03 20;
+    --sidebar-foreground: 0.93 0.02 60;
+    --sidebar-primary: 0.84 0.16 80;
+    --sidebar-primary-foreground: 0.13 0.04 20;
+    --sidebar-accent: 0.22 0.005 250;
+    --sidebar-accent-foreground: 0.93 0.02 60;
+    --sidebar-border: 0.28 0.01 250;
+    --sidebar-ring: 0.84 0.16 80;
+
+    /* Custom BollywoodTix tokens */
+    --gold: #d6a23a;
+    --gold-light: #f0c55a;
+    --btn-primary: #f4c65a;
+    --text-primary: #f2e6d3;
+    --text-muted: #b8b0a6;
+    --accent-red: #7a0e0e;
+    --bg-deep: #120808;
+    --bg-container: #1f2328;
+    --bg-card: #2a2f35;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Inter", sans-serif;
+    background-color: #120808;
+    color: #f2e6d3;
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: "Playfair Display", serif;
+  }
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #1f2328;
+}
+::-webkit-scrollbar-thumb {
+  background: #d6a23a55;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d6a23a;
+}
+
+/* Gold shimmer animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.gold-shimmer {
+  background: linear-gradient(90deg, #d6a23a, #f0c55a, #d6a23a, #f0c55a);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 3s linear infinite;
+}
+
+/* Seat styles */
+.seat-available:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+.seat-selected {
+  box-shadow: 0 0 8px #f4c65a88;
+}
